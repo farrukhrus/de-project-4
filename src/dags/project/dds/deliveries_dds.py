@@ -41,6 +41,7 @@ class dm_deliveriesOriginRepository:
                         dc.object_value::json->>'sum' as "sum",
                         dc.object_value::json->>'tip_sum' as tip_sum
                 from stg.deliverysystem_deliveries dc
+                where id > %(threshold)s
                 order by id asc;
                 """, {
                     "threshold": dm_deliverie_threshold
